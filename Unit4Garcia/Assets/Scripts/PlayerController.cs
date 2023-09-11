@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject powerupAIndicator;
     public float speed = 10.0f;
     public float strength = 100.0f;
-    public bool hasPowerupA;
+    public bool hasPowerup;
     void Start()
     {
         rigidBodyPlayer = GetComponent<Rigidbody>();
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("PowerupA"))
         {
-            hasPowerupA = true;
+            hasPowerup = true;
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountdownRoutine());
             powerupAIndicator.gameObject.SetActive(true);
@@ -33,18 +33,18 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerupA)
+        if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
         {
             Rigidbody rigidBodyEnemy = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 fromPlayer = (collision.gameObject.transform.position - transform.position); 
-            Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerupA);
+            Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
             rigidBodyEnemy.AddForce(fromPlayer * strength, ForceMode.Impulse);
         }
     }
     IEnumerator PowerupCountdownRoutine()
     {
         yield return new WaitForSeconds(5);
-        hasPowerupA = false;
+        hasPowerup = false;
         powerupAIndicator.gameObject.SetActive(false);
     }
 }

@@ -233,7 +233,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce47c6cf3a7daed4797061d9bed9e6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs: {fileID: 5607167840005599863, guid: 50e6e29ebdeb52d44bc09068f2dadd8c, type: 3}
+  enemyPrefabs:
+  - {fileID: 5607167840005599863, guid: 50e6e29ebdeb52d44bc09068f2dadd8c, type: 3}
+  - {fileID: 5607167840005599863, guid: 1ce56f3e0118edf4bbce36e75ad9ac6d, type: 3}
+  - {fileID: 5607167840005599863, guid: ada7443946028b347b41ce43305630ae, type: 3}
+  - {fileID: 5607167840005599863, guid: 3683ae9558ab5c44b8cfbe1df6603cb6, type: 3}
+  - {fileID: 5607167840005599863, guid: a93dda42e0405fd45893a7097df93f04, type: 3}
+  - {fileID: 5607167840005599863, guid: bad93e2b4e7b91746988880d50c9c133, type: 3}
+  - {fileID: 5607167840005599863, guid: 5ff4d378f6ff1e841a1af6b144916029, type: 3}
+  - {fileID: 5607167840005599863, guid: a173923b06f4f564cb56969fc3fc8708, type: 3}
   powerupPrefabs: {fileID: 1137621225854348239, guid: c9d2c6fecd5bb01409e1603261212834, type: 3}
   enemyCount: 1
   waveNumber: 1
@@ -798,7 +806,7 @@ MonoBehaviour:
   powerupAIndicator: {fileID: 1829739779}
   speed: 5.5
   strength: 100
-  hasPowerupA: 0
+  hasPowerup: 0
 --- !u!1 &1829739779 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1672443178567878, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
