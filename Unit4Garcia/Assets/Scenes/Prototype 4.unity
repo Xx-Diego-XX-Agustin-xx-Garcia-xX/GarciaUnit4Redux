@@ -605,7 +605,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1672443178567878, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
       propertyPath: m_Name
-      value: PowerupAIndicator
+      value: PowerupIndicator
       objectReference: {fileID: 0}
     - target: {fileID: 1672443178567878, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
       propertyPath: m_IsActive
@@ -803,15 +803,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14487fffa7b4a25429c53028a7f48650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupAIndicator: {fileID: 1829739779}
+  currentPowerUp: 0
+  rocketPrefab: {fileID: 0}
+  powerupIndicator: {fileID: 0}
   speed: 5.5
   strength: 100
   hasPowerup: 0
---- !u!1 &1829739779 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1672443178567878, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}
-  m_PrefabInstance: {fileID: 1646310019}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1829739780 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4217630959725582, guid: 5e5b016a0cd771740aae0b664476d77d, type: 3}

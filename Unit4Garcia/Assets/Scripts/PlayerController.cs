@@ -7,7 +7,11 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rigidBodyPlayer;
     private GameObject focalPoint;
-    public GameObject powerupAIndicator;
+    private GameObject tmpRocket;
+    private Coroutine powerupCountdown;
+    public PowerUpType currentPowerUp = PowerUpType.None;
+    public GameObject rocketPrefab;
+    public GameObject powerupIndicator;
     public float speed = 10.0f;
     public float strength = 100.0f;
     public bool hasPowerup;
@@ -23,21 +27,26 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PowerupA"))
+        if (other.CompareTag("Powerup"))
         {
             hasPowerup = true;
+            currentPowerUp = other.gameObject.GetComponent<PowerupController>().powerupType;
             Destroy(other.gameObject);
-            StartCoroutine(PowerupCountdownRoutine());
-            powerupAIndicator.gameObject.SetActive(true);
+            powerupIndicator.gameObject.SetActive(true);
+            if (powerupCountdown != null)
+            {
+                StopCoroutine(powerupCountdown);
+            }
+            powerupCountdown = StartCoroutine(PowerupCountdownRoutine());
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        if (collision.gameObject.CompareTag("Enemy") && currentPowerUp == PowerUpType.A)
         {
             Rigidbody rigidBodyEnemy = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 fromPlayer = (collision.gameObject.transform.position - transform.position); 
-            Debug.Log("Collided with " + collision.gameObject.name + " with powerup set to " + hasPowerup);
+            Vector3 fromPlayer = (collision.gameObject.transform.position - transform.position);
+            Debug.Log("Player collided with: " + collision.gameObject.name + " with powerup set to " + currentPowerUp.ToString());
             rigidBodyEnemy.AddForce(fromPlayer * strength, ForceMode.Impulse);
         }
     }
@@ -45,6 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         hasPowerup = false;
-        powerupAIndicator.gameObject.SetActive(false);
+        currentPowerUp = PowerUpType.None;
+        powerupIndicator.gameObject.SetActive(false);
     }
 }
